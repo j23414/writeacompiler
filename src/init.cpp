@@ -3,8 +3,8 @@
 #include "symbol.h"
 
 struct entry keywords[] = {
-  "div",DIV,
-  "mod",MOD,
+  (char*)"div",DIV,
+  (char*)"mod",MOD,
   0,0
 };
 

@@ -1,3 +1,3 @@
 
-int error(char *m);
+int error(const char *m);
 
