@@ -1,11 +1,11 @@
 # writeacompiler
 
-This is my brief forey through compiler writing. Main text are:
+This is my brief foray through compiler writing. The main text I will be using are:
 
 * Compilers Principles, Techniques, and Tools (Dragon book)
 * Engineering a Compiler
 
-The First example for the Dragon book needed some modification to work on my computer.
+The first example for the Dragon book needed some modification to work on my computer.
 
 * changed cc to g++
 * added missing include libraries
