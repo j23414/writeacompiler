@@ -13,19 +13,9 @@ The first example for the Dragon book needed some modification to work on my com
 
 **Example run:**
 ```
-$ a.out
-4+2-3*5 (PRESS ENTER)
-token 256, tokenval 4
-token 256, tokenval 2
-+
-token 256, tokenval 3
-token 256, tokenval 5
-*4+5 (PRESS ENTER)
-*
-token 256, tokenval 4
-*
--
-token 256, tokenval 5
+$ cd src
+$ make
+$ ./basic < input.txt
 ```
 
 ** Bison Tutorial ** : http://alumni.cs.ucr.edu/~lgao/teaching/bison.html
