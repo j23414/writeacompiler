@@ -8,6 +8,7 @@ int tokenval = NONE;
 
 /* lexical analyzer */
 int lexan(){
+  printf("lexer:In lexan\n");
   int t;
   while(1){
     t=getchar();

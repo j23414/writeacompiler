@@ -11,6 +11,7 @@ struct entry symtable[SYMMAX];
 int lastentry = 0;
 
 int lookup(char s[]){
+  printf("In lookup\n");
   for(int p=lastentry; p>0; p=p-1){
     if(strcmp(symtable[p].lexptr,s)==0)
       return p;
@@ -19,6 +20,7 @@ int lookup(char s[]){
 }
 
 int insert(char s[],int tok){
+  printf("symbol:In insert\n");
   int len;
   len=strlen(s);
   if(lastentry+1>=SYMMAX)

@@ -14,6 +14,7 @@ void match(int t);
 
 /* parses and translates expression list */
 void parse(){
+  printf("parser:In parse\n");
   lookahead=lexan();
   while(lookahead!=DONE){
     expr();
@@ -22,6 +23,7 @@ void parse(){
 }
 
 void expr(){
+  printf("parser:In expr\n");
   int t;
   term();
   while(1)
@@ -39,6 +41,7 @@ void expr(){
 }
 
 void factor(){
+  printf("parser:In factor\n");
   switch(lookahead){
   case '(':
     match('(');
@@ -60,6 +63,7 @@ void factor(){
 
 
 void term(){
+  printf("parser:In term\n");
   int t;
   factor();
   while(1)
@@ -80,6 +84,7 @@ void term(){
 }
 
 void match(int t){
+  printf("parser:In match\n");
   if(lookahead==t)
     lookahead=lexan();
   else
