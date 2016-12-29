@@ -25,8 +25,8 @@ void yyerror(const char* s);
 %left T_PLUS T_MINUS
 %left T_MULTIPLY T_DIVIDE
 
-%type<ival> expression
-%type<fval> mixed_expression
+%type<ival> expr
+%type<fval> mx_expr
 
 %start calculation
 
@@ -37,38 +37,38 @@ calculation:
 ;
 
 line: T_NEWLINE
-    | mixed_expression T_NEWLINE { printf("\tME Result: %f\n", $1);}
-    | expression T_NEWLINE { printf("\tE Result: %i\n", $1); } 
+    | mx_expr T_NEWLINE { printf("\tME Result: %f\n", $1);}
+    | expr T_NEWLINE { printf("\tE Result: %i\n", $1); } 
     | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
     | T_TERM T_NEWLINE { printf("\tTERM: %s\n",$1) }
 ;
 
-mixed_expression: T_FLOAT                 		 { $$ = $1; }
-	  | mixed_expression T_PLUS mixed_expression	 { $$ = $1 + $3; }
-	  | mixed_expression T_MINUS mixed_expression	 { $$ = $1 - $3; }
-	  | mixed_expression T_MULTIPLY mixed_expression { $$ = $1 * $3; }
-	  | mixed_expression T_DIVIDE mixed_expression	 { $$ = $1 / $3; }
-	  | T_LEFT mixed_expression T_RIGHT		 { $$ = $2; }
-	  | expression T_PLUS mixed_expression	 	 { $$ = $1 + $3; }
-	  | expression T_MINUS mixed_expression	 	 { $$ = $1 - $3; }
-	  | expression T_MULTIPLY mixed_expression 	 { $$ = $1 * $3; }
-	  | expression T_DIVIDE mixed_expression	 { $$ = $1 / $3; }
-	  | mixed_expression T_PLUS expression	 	 { $$ = $1 + $3; }
-	  | mixed_expression T_MINUS expression	 	 { $$ = $1 - $3; }
-	  | mixed_expression T_MULTIPLY expression 	 { $$ = $1 * $3; }
-	  | mixed_expression T_DIVIDE expression	 { $$ = $1 / $3; }
-	  | expression T_DIVIDE expression		 { $$ = $1 / (float)$3; }
-          | T_SIN T_LEFT mixed_expression T_RIGHT        { $$ = sin($3); }
-          | T_COS T_LEFT mixed_expression T_RIGHT        { $$ = cos($3); }
-          | T_SIN T_LEFT expression T_RIGHT        { $$ = sin((float)$3); }
-          | T_COS T_LEFT expression T_RIGHT        { $$ = cos((float)$3); }
+mx_expr: T_FLOAT                 		 { $$ = $1; }
+	  | mx_expr T_PLUS mx_expr	 { $$ = $1 + $3; }
+	  | mx_expr T_MINUS mx_expr	 { $$ = $1 - $3; }
+	  | mx_expr T_MULTIPLY mx_expr { $$ = $1 * $3; }
+	  | mx_expr T_DIVIDE mx_expr	 { $$ = $1 / $3; }
+	  | T_LEFT mx_expr T_RIGHT		 { $$ = $2; }
+	  | expr T_PLUS mx_expr	 	 { $$ = $1 + $3; }
+	  | expr T_MINUS mx_expr	 	 { $$ = $1 - $3; }
+	  | expr T_MULTIPLY mx_expr 	 { $$ = $1 * $3; }
+	  | expr T_DIVIDE mx_expr	 { $$ = $1 / $3; }
+	  | mx_expr T_PLUS expr	 	 { $$ = $1 + $3; }
+	  | mx_expr T_MINUS expr	 	 { $$ = $1 - $3; }
+	  | mx_expr T_MULTIPLY expr 	 { $$ = $1 * $3; }
+	  | mx_expr T_DIVIDE expr	 { $$ = $1 / $3; }
+	  | expr T_DIVIDE expr		 { $$ = $1 / (float)$3; }
+          | T_SIN T_LEFT mx_expr T_RIGHT        { $$ = sin($3); }
+          | T_COS T_LEFT mx_expr T_RIGHT        { $$ = cos($3); }
+          | T_SIN T_LEFT expr T_RIGHT        { $$ = sin((float)$3); }
+          | T_COS T_LEFT expr T_RIGHT        { $$ = cos((float)$3); }
 ;
 
-expression: T_INT				{ $$ = $1; }
-	  | expression T_PLUS expression	{ $$ = $1 + $3; }
-	  | expression T_MINUS expression	{ $$ = $1 - $3; }
-	  | expression T_MULTIPLY expression	{ $$ = $1 * $3; }
-	  | T_LEFT expression T_RIGHT		{ $$ = $2; }
+expr: T_INT				{ $$ = $1; }
+	  | expr T_PLUS expr	{ $$ = $1 + $3; }
+	  | expr T_MINUS expr	{ $$ = $1 - $3; }
+	  | expr T_MULTIPLY expr	{ $$ = $1 * $3; }
+	  | T_LEFT expr T_RIGHT		{ $$ = $2; }
 ;
 
 %%
