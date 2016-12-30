@@ -1,0 +1,3 @@
+
+void Hello(char* s);
+

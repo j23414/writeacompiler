@@ -7,7 +7,7 @@ lex.yy.c: lang.l lang.tab.h
 	flex lang.l
 
 lang: lex.yy.c lang.tab.c lang.tab.h
-	gcc -o lang lang.tab.c lex.yy.c
+	gcc -o lang myfunctions.c lang.tab.c lex.yy.c
 
 clean:
 	rm lang lang.tab.c lex.yy.c lang.tab.h

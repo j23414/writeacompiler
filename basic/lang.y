@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include "myfunctions.h"
+  
 extern int yylex();
 extern int yyparse();
 extern FILE* yyin;
@@ -40,7 +41,8 @@ line: T_NEWLINE
     | mx_expr T_NEWLINE { printf("\tME Result: %f\n", $1);}
     | expr T_NEWLINE { printf("\tE Result: %i\n", $1); } 
     | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
-    | T_TERM T_NEWLINE { printf("\tTERM: %s\n",$1) }
+    | T_TERM T_NEWLINE { Hello($1);}
+//     printf("\tTERM: %s\n",$1) }
 ;
 
 mx_expr: T_FLOAT                 		 { $$ = $1; }
